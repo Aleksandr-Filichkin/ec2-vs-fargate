@@ -47,13 +47,13 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_RUN_ID .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_RUN_ID
 
-#      - name: Terraform init and plan
-#        env:
-#          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#        run: |
-#          cd ./terraform
-#          terraform init -input=false
-#          terraform plan -var image_version=$GITHUB_RUN_ID -var-file="dev-terraform.tfvars"
-#          terraform apply -var image_version=$GITHUB_RUN_ID -var-file="dev-terraform.tfvars" -auto-approve
+      - name: Terraform init and plan
+        env:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          cd ./terraform
+          terraform init -input=false
+          terraform plan -var image_version=$GITHUB_RUN_ID -var-file="dev-terraform.tfvars"
+          terraform apply -var image_version=$GITHUB_RUN_ID -var-file="dev-terraform.tfvars" -auto-approve
 

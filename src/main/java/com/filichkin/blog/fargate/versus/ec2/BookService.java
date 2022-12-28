@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class BookService {
-    private static final String TABLE_NAME = "books";
+    private static final String TABLE_NAME = "ec2-vs-fargate";
     private static final String BOOK = "book";
     private static final String ID = "id";
     private DynamoDbAsyncClient client;
@@ -24,7 +24,7 @@ public class BookService {
         client = DynamoDbAsyncClient
                 .builder()
                 .httpClient(NettyNioAsyncHttpClient.builder().maxConcurrency(1000).build()) //default max concurrency is 50, which is not enough
-                .region(Region.US_EAST_1)
+                .region(Region.EU_WEST_1)
                 .build();
 
     }
